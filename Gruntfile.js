@@ -6,7 +6,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-develop');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-mkdir');
-  grunt.loadNpmTasks('grunt-bower-task');
 
   grunt.initConfig({
     clean: ["./dist"],
@@ -14,13 +13,6 @@ module.exports = function (grunt) {
       dist: {
         options: {
           create: ['./dist']
-        }
-      }
-    },
-    bower: {
-      install: {
-        options: {
-          cleanup: true
         }
       }
     },
@@ -33,6 +25,9 @@ module.exports = function (grunt) {
     exec: {
       makeDist: {
         cmd: 'rm -rf dist && mkdir dist'
+      },
+      bower: {
+        cmd: 'bower install'
       }
     },
     karma: {
@@ -68,7 +63,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', [
-    'bower',
+    'exec:bower',
     'copy:dist'
   ]);
 

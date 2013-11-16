@@ -4,6 +4,7 @@ A web based application for playing the Pathfinder RPG game.
 ## Dependencies
 * Nodejs
 * Npm
+* Bower
 
 ```
 npm install -g grunt-cli
@@ -11,6 +12,7 @@ npm install -g grunt-cli
 
 ```
 npm install
+bower install
 ```
 
 ## Develop

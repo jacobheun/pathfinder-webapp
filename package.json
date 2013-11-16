@@ -29,6 +29,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-develop": "~0.2.2",
     "grunt-mkdir": "~0.1.1",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-bower-task": "~0.3.4"
   }
 }

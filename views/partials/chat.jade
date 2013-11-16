@@ -1,2 +1,7 @@
-div#chat-container
+div#chat-container(ng-controller="chatController")
   h2 Chat goes here
+  ul
+    li(ng-repeat="chat in chats")
+      span {{chat}}
+  input(ng-model="chatText")
+  button(ng-Click="addChat()") Add Chat

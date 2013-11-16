@@ -1,9 +1,9 @@
 doctype 5
-html(ng-app)
+html(ng-app="pathfinder")
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    include partials/scripts/body
   body
     block content
     include partials/chat
-    include partials/scripts/body

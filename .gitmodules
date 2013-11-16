@@ -1,3 +1,0 @@
-[submodule "express-static"]
-	path = express-static
-	url = git@github.com:meltmedia/express-static.git

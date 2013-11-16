@@ -22,7 +22,8 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.1",
     "grunt-karma": "~0.6.1",
-    "phantomjs": "~1.9"
+    "phantomjs": "~1.9",
+    "express-writer": "0.0.2"
   },
   "devDependencies": {
     "karma-ng-scenario": "~0.1.0",

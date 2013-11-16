@@ -2,14 +2,17 @@
 
 /*global app */
 
-angular.module('pathfinder.controllers', []).
-  controller('chatController', function ($scope) {
+angular.module('pathfinder.controllers', ['firebase']).
+  controller('chatController', ['$scope', 'angularFire',
 
-    $scope.chats = ["Heyo", "Whats up?"];
+    function ($scope, angularFire) {
 
-    $scope.addChat = function() {
-      $scope.chats.push($scope.chatText);
-      $scope.chatText = "";
-    };
+      var chats = new Firebase('https://pathfinder-webapp-db.firebaseio.com/chats');
+      angularFire(chats.limit(15), $scope, "chats");
 
-  });
+      $scope.addChat = function() {
+        $scope.chats[chats.push().name()] = $scope.chatText;
+        $scope.chatText = "";
+      };
+
+  }]);

@@ -16,6 +16,23 @@ module.exports = function (grunt) {
         }
       }
     },
+    connect: {
+      options: {
+        port: 9000,
+        // change this to '0.0.0.0' to access the server from outside
+        hostname: 'localhost'
+      },
+      test: {
+        options: {
+          middleware: function (connect) {
+            return [
+              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'test')
+            ];
+          }
+        }
+      }
+    },
     develop: {
       server: {
         file: 'app.js',
@@ -75,6 +92,14 @@ module.exports = function (grunt) {
     'mkdir:dist',
     'copy:dist',
     'karma:e2e'
+  ]);
+
+  grunt.registerTask('test', [
+//    'clean:server',
+//    'concurrent:test',
+//    'connect:test',
+//    'neuter:app',
+    'karma:unit'
   ]);
 
   grunt.registerTask('e', [

@@ -1,5 +1,7 @@
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-reload");
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -35,8 +37,7 @@ module.exports = function (grunt) {
     },
     develop: {
       server: {
-        file: 'app.js',
-        env: { NODE_ENV: 'dist'}      // optional
+        file: 'app.js'
       }
     },
     exec: {
@@ -76,6 +77,25 @@ module.exports = function (grunt) {
           }
         ]
       }
+    },
+    watch: {
+      all: {
+        files: ["/views/**/*", "resources/**/*", "vendor/**/*", "public/images/**/*", "public/javascripts/**/*"],
+        tasks: ["liveReload"],
+        options: {
+          nospawn: true,
+          interrupt: false,
+          debounceDelay: 250
+        }
+      }
+    },
+    reload: {
+      port: 36729,
+      liveReload: {},
+      proxy: {
+        host: "localhost",
+        port: 8181
+      }
     }
   });
 
@@ -84,6 +104,9 @@ module.exports = function (grunt) {
     'copy:dist'
   ]);
 
+  grunt.registerTask("liveReload", ["reload", "watch"])
+
+  grunt.registerTask("dev", ["develop","liveReload"]);
 
   grunt.registerTask('dist', [
     'bower',

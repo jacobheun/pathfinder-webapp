@@ -44,9 +44,7 @@ HTML generated with [jade](http://jade-lang.com/reference/)
 
 ## Develop
 
-```
-npm start
-```
+Running ```grunt dev``` will launch the server and watch local files for changes. If files are changed, the browser will live reload.
 
 
 ## Build static files

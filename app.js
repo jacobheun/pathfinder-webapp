@@ -28,8 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
-// development only
-if ('development' == app.get('env')) {
+app.configure('development', function() {
 
   app.use(express.errorHandler());
   app.use(stylus.middleware({
@@ -39,15 +38,19 @@ if ('development' == app.get('env')) {
     force: true
   }));
 
-// Our environment for static file rendering
-} else if ('dist' == app.get('env')) {
+  // This must come after the stylus middleware
+  app.use(express.static(path.join(__dirname, 'public')));
 
+  app.use(require('connect-livereload')({
+    port: 36729
+  }));
+
+});
+
+app.configure('dist', function() {
+  app.use(express.static(path.join(__dirname, 'public')));
   app.use(writer.watch);
-
-}
-
-// This must come after the stylus middleware
-app.use(express.static(path.join(__dirname, 'public')));
+});
 
 // Out static site's routes
 app.get('/', routes.index);

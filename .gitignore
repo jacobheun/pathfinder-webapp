@@ -4,3 +4,4 @@ node_modules
 public/javascripts/libs
 dist
 public/stylesheets
+*.log

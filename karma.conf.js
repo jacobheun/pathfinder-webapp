@@ -7,7 +7,9 @@ module.exports = function(config) {
     files: [
       'public/javascripts/libs/angular/angular.js',
       'public/javascripts/libs/angular-mocks/angular-mocks.js',
+      'public/javascripts/libs/underscore/underscore-min.js',
       'public/javascripts/app.js',
+      'public/javascripts/filters/chatFilter.js',
       'public/javascripts/controllers/chatcontroller.js',
       './test/**/*.js'
     ],

@@ -3,6 +3,7 @@
 /*global app */
 
 angular.module('pathfinder.controllers', ['firebase']).
+
   controller('chatController', ['$scope', 'angularFire', "Firebase",
 
     function ($scope, angularFire, Firebase) {
@@ -15,4 +16,6 @@ angular.module('pathfinder.controllers', ['firebase']).
         $scope.chatText = "";
       };
 
-  }]);
+    }
+
+  ]);

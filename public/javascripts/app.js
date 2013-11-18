@@ -2,7 +2,7 @@
 
 angular.module('pathfinder', [
 //    'ngRoute',
-//    'pathfinder.filters',
+    'pathfinder.filters',
 //    'pathfinder.services',
 //    'pathfinder.directives',
     'pathfinder.controllers'

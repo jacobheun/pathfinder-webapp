@@ -7,6 +7,8 @@ describe('ChatController', function () {
 
   var $scope = null;
   var chatController = null;
+  var $filter = null;
+  var diceFilter = null;
 
   // Mock the firebase chat endpoint
   var mockFirebase = function() {
@@ -37,8 +39,12 @@ describe('ChatController', function () {
     $scope = $rootScope.$new();
     $scope.chats = {};
 
+    diceFilter = jasmine.createSpy('diceFilter');
+    $filter = jasmine.createSpy('$filter').andReturn(diceFilter);
+
     chatController = $controller('chatController', {
       $scope: $scope,
+      $filter: $filter,
       angularFire: mockAngularFire,
       Firebase: mockFirebase
     });
@@ -61,6 +67,8 @@ describe('ChatController', function () {
 
       $scope.chatText = "My new chat.";
 
+      diceFilter.andReturn("My new chat.");
+
       $scope.addChat();
 
       expect($scope.chats).toEqual({"uniquename" : "My new chat."});
@@ -77,6 +85,8 @@ describe('ChatController', function () {
 
           $scope.chatText = "/b20";
 
+          diceFilter.andReturn("/b20");
+
           $scope.addChat();
 
           expect($scope.chats).toEqual({"uniquename" : "/b20"});
@@ -88,6 +98,8 @@ describe('ChatController', function () {
       it("should yield a number when rolling a single die", function() {
 
         $scope.chatText = "/d20";
+
+        diceFilter.andReturn("17");
 
         $scope.addChat();
 
@@ -102,6 +114,8 @@ describe('ChatController', function () {
 
         $scope.chatText = "/5d6";
 
+        diceFilter.andReturn("18");
+
         $scope.addChat();
 
         // Chats are strings, lets get the number value
@@ -114,6 +128,8 @@ describe('ChatController', function () {
       it("should yield two numbers when separating rolls by a comma", function() {
 
         $scope.chatText = "/d20,2d6";
+
+        diceFilter.andReturn("12 5");
 
         $scope.addChat();
 
@@ -132,6 +148,8 @@ describe('ChatController', function () {
 
         $scope.chatText = "/d20+5";
 
+        diceFilter.andReturn("18");
+
         $scope.addChat();
 
         // Chats are strings, lets get the number value
@@ -145,6 +163,8 @@ describe('ChatController', function () {
 
         $scope.chatText = "/d20 skeletons";
 
+        diceFilter.andReturn("5 skeletons");
+
         $scope.addChat();
 
         var value = $scope.chats["uniquename"];
@@ -157,6 +177,8 @@ describe('ChatController', function () {
       it('should handle complex dice rolls', function() {
 
         $scope.chatText = "/d20+2 goblins,d20+1 skeletons,d20+12 balrog";
+
+        diceFilter.andReturn("4 goblins 18 skeletons 25 balrog");
 
         $scope.addChat();
 

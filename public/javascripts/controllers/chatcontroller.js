@@ -1,7 +1,5 @@
 'use strict';
 
-/*global app */
-
 angular.module('pathfinder.controllers', ['firebase','ui.keypress']).
 
   controller('chatController', ['$scope', '$filter', 'angularFire', "Firebase",

@@ -80,7 +80,7 @@ module.exports = function (grunt) {
     },
     watch: {
       all: {
-        files: ["/views/**/*", "resources/**/*", "vendor/**/*", "public/images/**/*", "public/javascripts/**/*"],
+        files: ["views/**", "resources/**", "public/images/**", "public/javascripts/**"],
         tasks: ["liveReload"],
         options: {
           nospawn: true,

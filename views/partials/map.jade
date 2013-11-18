@@ -1,0 +1,9 @@
+div#map-container(ng-controller="mapController")
+  h2 Map
+  div.table-container
+    table
+      tr(ng-repeat="column in spaces")
+        td(ng-repeat="row in column")
+          p {{row.x}},{{row.y}}
+
+  button(ng-click="generateMap()") Generate Map

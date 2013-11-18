@@ -38,6 +38,10 @@ npm install
 bower install
 ```
 
+## Tech
+Css compiled from [stylus](http://learnboost.github.io/stylus/)
+HTML generated with [jade](http://jade-lang.com/reference/)
+
 ## Develop
 
 ```

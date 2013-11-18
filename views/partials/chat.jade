@@ -1,7 +1,8 @@
 div#chat-container(ng-controller="chatController")
-  h2 Chat goes here
+  h2 Chat
   ul
     li(ng-repeat="chat in chats")
       span {{chat}}
-  input(ng-model="chatText")
+  input(ng-model="chatText" ui-keydown="{esc: 'clear($event)', enter: 'addChat()'}")
+  span(class="example") */d20+2 attack morningstar,2d8+4 damage
   button(ng-Click="addChat()") Add Chat

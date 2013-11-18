@@ -13,6 +13,7 @@ var items = require('./routes/items');
 var http = require('http');
 var path = require('path');
 var writer = require('express-writer');
+var stylus = require('stylus');
 
 var app = express();
 var server;
@@ -26,12 +27,17 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
 
   app.use(express.errorHandler());
+  app.use(stylus.middleware({
+    src: __dirname + '/resources/',
+    dest: __dirname + '/public/',
+    debug: true,
+    force: true
+  }));
 
 // Our environment for static file rendering
 } else if ('dist' == app.get('env')) {
@@ -39,6 +45,9 @@ if ('development' == app.get('env')) {
   app.use(writer.watch);
 
 }
+
+// This must come after the stylus middleware
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Out static site's routes
 app.get('/', routes.index);

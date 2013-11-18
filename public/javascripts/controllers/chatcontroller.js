@@ -2,7 +2,7 @@
 
 /*global app */
 
-angular.module('pathfinder.controllers', ['firebase']).
+angular.module('pathfinder.controllers', ['firebase','ui.keypress']).
 
   controller('chatController', ['$scope', '$filter', 'angularFire', "Firebase",
 
@@ -13,6 +13,10 @@ angular.module('pathfinder.controllers', ['firebase']).
 
       $scope.addChat = function() {
         $scope.chats[chats.push().name()] = $filter('diceFilter')($scope.chatText);
+        $scope.chatText = "";
+      };
+
+      $scope.clear = function() {
         $scope.chatText = "";
       };
 

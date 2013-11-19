@@ -30,6 +30,17 @@ angular.module('pathfinder.controllers').
 
       };
 
+      $scope.spaceMenu = function(row) {
+
+        // Super crude borders
+        if (row.borders === "1111") {
+          row.borders = "0000";
+        } else {
+          row.borders = "1111";
+        }
+
+      };
+
     }
 
   ]);

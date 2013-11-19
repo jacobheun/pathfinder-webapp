@@ -3,7 +3,7 @@ div#map-container(ng-controller="mapController")
   div.table-container
     table
       tr(ng-repeat="column in spaces")
-        td(ng-repeat="row in column")
-          p {{row.x}},{{row.y}}
+        td(ng-right-click="spaceMenu(space)" ng-repeat="space in column" class="borders-{{space.borders}}")
+          p {{space.x}},{{space.y}}
 
   button(ng-click="generateMap()") Generate Map

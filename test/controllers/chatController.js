@@ -30,6 +30,7 @@ describe('ChatController', function () {
   // load the controller's module
   beforeEach(function() {
     angular.module("firebase", []);
+    angular.module("ui.keypress", []);
     module('pathfinder.controllers');
   });
 

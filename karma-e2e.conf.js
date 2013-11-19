@@ -11,8 +11,10 @@ module.exports = function(config) {
     autoWatch: true,
 
     proxies: {
-      '/': 'http://localhost:3000'
+      '/': 'http://localhost:3000/'
     },
+
+    port: 9877,
 
     browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
 

@@ -1,13 +1,14 @@
 module.exports = function (grunt) {
 
-  grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks("grunt-reload");
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-exec');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-develop');
+  grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks('grunt-develop');
+  grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-mkdir');
+  grunt.loadNpmTasks("grunt-reload");
 
   grunt.initConfig({
     clean: ["./dist"],
@@ -34,6 +35,9 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+    concurrent: {
+      tests: ['karma:unit', 'karma:e2e']
     },
     develop: {
       server: {
@@ -109,7 +113,6 @@ module.exports = function (grunt) {
   grunt.registerTask("dev", ["develop","liveReload"]);
 
   grunt.registerTask('dist', [
-    'bower',
     'develop',
     'clean',
     'mkdir:dist',
@@ -117,12 +120,11 @@ module.exports = function (grunt) {
     'karma:e2e'
   ]);
 
+  grunt.registerTask("install", ["exec:bower"]);
+
   grunt.registerTask('test', [
-//    'clean:server',
-//    'concurrent:test',
-//    'connect:test',
-//    'neuter:app',
-    'karma:unit'
+    'develop',
+    'concurrent:tests'
   ]);
 
   grunt.registerTask('e', [

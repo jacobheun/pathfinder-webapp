@@ -27,16 +27,18 @@ would yield
 ## Dependencies
 * Nodejs
 * Npm
-* Bower
+* grunt-cli
 
 ```
 npm install -g grunt-cli
 ```
 
-```
-npm install
-bower install
-```
+## Commands
+
+* Prepare the application: ```npm install```. This will install npm and bower modules.
+* Test the application: ```grunt test```.
+* Run the server for dev: ```grunt dev```. This handles live reloads of client side code.
+* Compile static files: ```grunt dist```. Uses karma e2e tests to hit routes and render via [express-writer](https://github.com/rtorr/express-writer).
 
 ## Tech
 Css compiled from [stylus](http://learnboost.github.io/stylus/)
@@ -45,11 +47,3 @@ HTML generated with [jade](http://jade-lang.com/reference/)
 ## Develop
 
 Running ```grunt dev``` will launch the server and watch local files for changes. If files are changed, the browser will live reload.
-
-
-## Build static files
-Currently, static files are generated via requests through the karma e2e tests. Any routes should be tested in karma e2e in order to be rendered statically.
-
-```
-grunt dist
-```

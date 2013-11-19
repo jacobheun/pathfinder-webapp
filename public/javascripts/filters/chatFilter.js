@@ -41,12 +41,10 @@ angular.module('pathfinder.filters', []).
      * @returns {Number}
      */
     function getModifier(text) {
-      var split = text.split("+");
+      var modifiers = text.match(/[\+\-]{1}[0-9]{1,}/g);
       var value = 0;
 
-      split.shift();
-
-      _.each(split, function(val) {
+      _.each(modifiers, function(val) {
         var num = parseInt(val, 10);
         if (!isNaN(num)) value += num;
       });
@@ -115,7 +113,7 @@ angular.module('pathfinder.filters', []).
 
           // Get the multiplier
           var multiplier = getMultiplier( remainingText );
-          remainingText = remainingText.replace(multiplier,"");
+          remainingText = remainingText.replace(/\/[0-9]{0,}/,"");
 
           // Get the die
           var die = getDie(remainingText);

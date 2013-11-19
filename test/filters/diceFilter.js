@@ -94,6 +94,51 @@ describe('DiceFilter', function () {
 
     });
 
+    it('should yield a number when adding a negative modifier to a single die', function() {
+
+      var text = "/d20-5";
+
+      // Chats are strings, lets get the number value
+      var value = Number( diceFilter(text) );
+
+      expect(isNaN(value)).toBe(false);
+
+    });
+
+    it('should yield a number with multiple modifiers', function() {
+
+      var text = "/d20+5+3-1";
+
+      // Chats are strings, lets get the number value
+      var value = Number( diceFilter(text) );
+
+      expect(isNaN(value)).toBe(false);
+
+    });
+
+    it('should yield a 1 when rolling a 1 sided die', function() {
+
+      var text = "/d1";
+
+      // Chats are strings, lets get the number value
+      var value = Number( diceFilter(text) );
+
+      expect(value).toBe(1);
+
+    });
+
+    it('should yield a 1 when rolling a 0 sided die', function() {
+
+      var text = "/d0";
+
+      // Chats are strings, lets get the number value
+      var value = Number( diceFilter(text) );
+
+      expect(value).toBe(1);
+
+    });
+
+
     it('should yield a number and name when specifying a roll name', function() {
 
       var text = "/d20 skeletons";
@@ -105,10 +150,10 @@ describe('DiceFilter', function () {
 
     it('should handle complex dice rolls', function() {
 
-      var text = "/d20+2 goblins,d20+1 skeletons,d20+12 balrog";
+      var text = "/d20+2-1 goblins,d20+1+2 dire bear skeletons,d20+12-2+3 balrog";
 
       // This regex ensures a match such as this: '12 goblins 2 skeletons 32 balrog', where numbers can be 1-2 digits
-      expect( diceFilter(text) ).toMatch(/^[0-9]{1,2}[\s]{1}goblins[\s]{1}[0-9]{1,2}[\s]{1}skeletons[\s]{1}[0-9]{1,2}[\s]{1}balrog$/);
+      expect( diceFilter(text) ).toMatch(/^[0-9]{1,2}[\s]{1}goblins[\s]{1}[0-9]{1,2}[\s]{1}dire[\s]{1}bear[\s]{1}skeletons[\s]{1}[0-9]{1,2}[\s]{1}balrog$/);
 
     });
 

@@ -1,8 +1,7 @@
-header
-  ul
-    li
-      a(href='/') Home
-    li
-      a(href='/users') Users
-    li
-      a(href='/players') Players
+header(class='navbar navbar-inverse main-nav', role='navigation')
+  div.navbar-header
+    a(class='navbar-brand' href='/') Pathfinder RPG WebApp
+  div.collapse.navbar-collapse
+    ul.nav.navbar-nav
+      li(class=active==='items'?'active':'')
+        a(href='/items') Items

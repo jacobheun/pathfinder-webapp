@@ -1,22 +1,28 @@
 border = 1px solid lightgrey
 walls = 2px solid black
 
-body
-  padding: 10px
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+.main-nav {
+  text-shadow: 0 -1px 0 rgba(0,0,0,.15);
+  background-color: #AF2222;
+  border-color: #AF2222;
+  box-shadow: 0 1px 0 rgba(255,255,255,.1);
+  border-radius: 0;
+}
 
-h1
-  margin: 5px
+.navbar-inverse .navbar-brand
+  color: #fff
 
-a
-  color: #00B7FF
+.navbar-inverse .navbar-nav>li>a
+  color: #E0E0E0
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover
+  background-color: #8A1919
 
 .example
   color: #333
   font-size: 0.8em
 
 #chat-container
-  float: left
 
   ul
     list-style: none
@@ -35,10 +41,9 @@ a
     width: 100%
 
 #map-container
-  float: right
-  width: 600px
 
   table
+    height: 100%
     width: 100%
     border: border
     border-collapse: collapse
@@ -50,3 +55,27 @@ a
 
     td.borders-1111
       border: walls
+
+      p
+        margin: 0
+
+  /*Start code to make a square*/
+  .square-container
+    width: 100%;
+    display:inline-block;
+
+  .outer
+    position:relative;
+    width: 100%;
+    display:inline-block;
+
+  .inner-top
+    position:absolute; top:0; left:0; bottom:0; right:0;
+
+  .square
+    position: absolute;
+    top:0;left:0;bottom:0;right:0;
+
+  .fill
+    margin-top: 100%;
+  /*End code to make a square*/

@@ -54,10 +54,8 @@ app.configure('dist', function() {
 
 // Out static site's routes
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/items', items.items);
 app.get('/items/:id', items.item);
-app.get('/players', players.index);
-app.get('/players/:name', players.player);
 
 server = http.createServer(app);
 

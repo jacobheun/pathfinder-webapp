@@ -1,9 +1,14 @@
-div#map-container(ng-controller="mapController")
+div#map-container.col-md-8.col-lg-8(ng-controller="mapController")
   h2 Map
-  div.table-container
-    table
-      tr(ng-repeat="column in spaces")
-        td(ng-right-click="spaceMenu(space)" ng-repeat="space in column" class="borders-{{space.borders}}")
-          p {{space.x}},{{space.y}}
+  <!-- All nested divs are required for creating the table into a perfect square -->
+  div.square-container
+    div.outer
+      div.fill
+      div.inner-top
+        div.square
+          table
+            tr(ng-repeat="column in spaces")
+              td(ng-right-click="spaceMenu(space)" ng-repeat="space in column" class="borders-{{space.borders}}")
+                p {{space.x}},{{space.y}}
 
   button(ng-click="generateMap()") Generate Map

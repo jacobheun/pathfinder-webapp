@@ -2,8 +2,13 @@ doctype 5
 html(ng-app="pathfinder")
   head
     title= title
+    link(rel='stylesheet', href='/javascripts/libs/bootstrap/dist/css/bootstrap.min.css', media='screen')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     include partials/scripts/body
   body
-    block content
-    include partials/chat
+    include partials/nav
+    div.container
+      div.row
+        include partials/chat
+        block content

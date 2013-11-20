@@ -2,11 +2,26 @@
  * Runs all end to end tests
  */
 
-describe('My Sample Static Site', function() {
+describe('Pathfinder WebApp', function() {
 
-  it('should render the root', function() {
+  beforeEach(function() {
+
     browser().navigateTo('/');
+
+  });
+
+  it('should render the root when clicking home', function() {
+
+    element('a[href="/"]').click();
     expect(element('title').text()).toBe("Pathfinder RPG Webapp");
+
+  });
+
+  it('should render items page', function() {
+
+    element('a[href="/items"]').click();
+    expect(element('title').text()).toBe("Pathfinder - Items");
+
   });
 
 });

@@ -114,7 +114,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("liveReload", ["reload", "watch"])
 
-  grunt.registerTask("dev", ["develop","liveReload"]);
+  grunt.registerTask("dev", ["develop:developServer","liveReload"]);
 
   grunt.registerTask('dist', [
     'develop:distServer',

@@ -40,8 +40,12 @@ module.exports = function (grunt) {
       tests: ['karma:unit', 'karma:e2e']
     },
     develop: {
-      server: {
+      developServer: {
         file: 'app.js'
+      },
+      distServer: {
+        file: 'app.js',
+        env: { NODE_ENV: 'dist' }
       }
     },
     exec: {
@@ -113,7 +117,7 @@ module.exports = function (grunt) {
   grunt.registerTask("dev", ["develop","liveReload"]);
 
   grunt.registerTask('dist', [
-    'develop',
+    'develop:distServer',
     'clean',
     'mkdir:dist',
     'copy:dist',
@@ -123,7 +127,7 @@ module.exports = function (grunt) {
   grunt.registerTask("install", ["exec:bower"]);
 
   grunt.registerTask('test', [
-    'develop',
+    'develop:developServer',
     'concurrent:tests'
   ]);
 

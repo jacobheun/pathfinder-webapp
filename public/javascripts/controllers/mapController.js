@@ -15,11 +15,11 @@ angular.module('pathfinder.controllers').
         spaces.remove();
 
         // Let's create a grid to start with
-        _.times(10, function(y) {
+        _.times(15, function(y) {
 
           var column = spaces.push();
 
-          _.times(10, function(x) {
+          _.times(15, function(x) {
 
             // Create a new space
             column.push({ x : x, y : y });

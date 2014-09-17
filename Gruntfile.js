@@ -1,16 +1,17 @@
 module.exports = function (grunt) {
 
-  grunt.loadNpmTasks('grunt-concurrent');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks("grunt-contrib-watch");
-  grunt.loadNpmTasks('grunt-develop');
-  grunt.loadNpmTasks('grunt-exec');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-mkdir');
-  grunt.loadNpmTasks("grunt-reload");
+  require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+
+    bower: {
+      install: {
+        options: {
+          targetDir: './public/javascripts/libs'
+        }
+      }
+    },
+
     clean: ["./dist"],
     mkdir: {
       dist: {
@@ -51,9 +52,6 @@ module.exports = function (grunt) {
     exec: {
       makeDist: {
         cmd: 'rm -rf dist && mkdir dist'
-      },
-      bower: {
-        cmd: 'bower install'
       }
     },
     karma: {
@@ -108,7 +106,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', [
-    'exec:bower',
+    'bower:install',
     'copy:dist'
   ]);
 
@@ -124,7 +122,7 @@ module.exports = function (grunt) {
     'karma:e2e'
   ]);
 
-  grunt.registerTask("install", ["exec:bower"]);
+  grunt.registerTask("install", ["bower:install"]);
 
   grunt.registerTask('test', [
     'develop:developServer',
